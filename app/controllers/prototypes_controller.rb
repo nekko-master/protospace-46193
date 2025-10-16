@@ -28,8 +28,8 @@ class PrototypesController < ApplicationController
 
   def edit
     @prototype = Prototype.find(params[:id])
-    unless user_signed_in?
-      redirect_to root_path
+    unless user_signed_in? && current_user == @prototype.user  # 1回目の修正：他のユーザーの場合はトップページへリダイレクト
+      redirect_to new_user_session_path   # 1回目の修正：ログインページにリダイレクト
     end
 
   end
@@ -47,6 +47,7 @@ class PrototypesController < ApplicationController
 
   def destroy
     prototype = Prototype.find(params[:id])
+    prototype.destroy   # 1回目の修正：プロトタイプ削除機能
     redirect_to root_path
   end
 
