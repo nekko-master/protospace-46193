@@ -43,7 +43,6 @@ production:
 #test:
 #  <<: *default
 #  database: protospace_46193_test
-
 #production:
 #  <<: *default
 #  database: protospace_46193_production
